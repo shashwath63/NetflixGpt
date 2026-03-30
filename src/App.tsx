@@ -1,17 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
 
+import { Provider } from "react-redux";
+import "./App.css";
+import Body from "./components/Body.tsx";
+import appStore from "./utils/appStore.ts";
 function App() {
-
-
-  return (
-    <>
-      <h1 className='text-3xl font-bold underline bg-amber-100'>Netflix GPT</h1>
-    </>
-  )
+    return <Provider store={appStore}><Body /></Provider>;
 }
 
-export default App
+export default App;
