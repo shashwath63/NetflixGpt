@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { checkValidData } from "../utils/Validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
+import { LOGIN_BG_IMG } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { setUser } from "../utils/userSlice";
 
@@ -13,7 +13,7 @@ const Login = () => {
     const email = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
     const name = useRef<HTMLInputElement>(null);
-    const navigate = useNavigate();
+
     const dispatch = useDispatch();
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
@@ -33,7 +33,6 @@ const Login = () => {
                         .then(() => {
                             const { uid, email, displayName, photoURL } = auth.currentUser!;
                             dispatch(setUser({ uid, email, displayName, photoURL }));
-                            navigate("/browse");
                         })
                         .catch((error) => {
                             setErrorMessage(error.message);
@@ -49,7 +48,6 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
-                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -63,7 +61,7 @@ const Login = () => {
             <Header />
             <div className="absolute">
                 <img
-                    src="https://assets.nflxext.com/ffe/siteui/vlv3/8cc08720-ac1c-4364-bcbd-9495bf0308cd/web/IN-en-20260323-TRIFECTA-perspective_0b8c8e4e-71ee-48bd-8e16-da74f083a838_large.jpg"
+                    src={LOGIN_BG_IMG}
                     alt="bg-img"
                     className="w-full h-full object-cover"
                 />
