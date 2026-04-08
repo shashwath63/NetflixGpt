@@ -28,7 +28,7 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name.current?.value || "",
-                        photoURL: "https://avatars.githubusercontent.com/u/76518979?v=4",
+                        photoURL: "https://avatars.githubusercontent.com/u/76518979?s=400&v=4",
                     })
                         .then(() => {
                             const { uid, email, displayName, photoURL } = auth.currentUser!;
@@ -60,11 +60,7 @@ const Login = () => {
         <div>
             <Header />
             <div className="absolute">
-                <img
-                    src={LOGIN_BG_IMG}
-                    alt="bg-img"
-                    className="w-full h-full object-cover"
-                />
+                <img src={LOGIN_BG_IMG} alt="bg-img" className="w-full h-full object-cover" />
             </div>
             <form
                 action=""
